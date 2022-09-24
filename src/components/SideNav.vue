@@ -4,7 +4,7 @@
       <img src="/spotifyLogo.png" class="h-10" alt="spotify logo" style="filter: brightness(0) invert(1);">
     </div>
     <div class="mx-2 mb-5">
-      <button v-for="page in pages" @click="setID = page.id; router.push(page.id)" :class="`w-full text-sm font-semibold rounded px-3 py-2 flex items-center justify-start ${setID === page.id ? 'bg-light text-white': 'text-lightest'}`">
+      <button v-for="page in pages" @click="router.push(page.id)" :class="`w-full text-sm font-semibold rounded px-3 py-2 flex items-center justify-start ${router.currentRoute.value.name === page.id ? 'bg-light text-white': 'text-lightest'}`">
         <component v-bind:is="page.icon" class="mr-3"/>
         <p>{{ page.name }}</p>
       </button>
@@ -48,8 +48,6 @@ const pages = shallowRef([
   {id: 'search', name: 'Buscar', icon: SearchIcon},
   {id: 'library', name: 'Sua Biblioteca', icon: BarChartIcon}
 ])
-
-const setID = ref('home')
 
 const albums = ref([
   {name: 'drive'},
